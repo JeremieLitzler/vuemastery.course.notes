@@ -85,6 +85,7 @@ module.exports = {
 - The `views` folder is where we store the pages of our website,
 - Each page could be made of various components (stored in `components` folder).
 - But technically, a view is a component. It is just a high level component.
+- The path should start with a `/` otherwise it is treated as a relative route.
 
 ### Route naming
 
@@ -130,3 +131,35 @@ If it happens, and it will, that we need to change the path of a route, we can u
 ```
 
 - Using an alias is not ideal for SEO.
+
+## Dynamic Routing & History Mode
+
+- To build a dynamic route:
+
+```js
+export default new Router({
+  routes: [
+    ...{
+      path: '/user/:username', //<== this is a dynamic route with a dynamic segment
+      name: 'user',
+      component: User,
+    },
+  ],
+});
+```
+
+- To pass on the parameter, use `props: true` on the route and add this to the view:
+
+```html
+<script>
+  export default {
+      props: ['username'];
+  };
+</script>
+```
+
+so that we can use the `username` in the HTML :
+
+```html
+<router-link :to="{ name: 'user' }">User: {{username}}</router-link> |
+```
