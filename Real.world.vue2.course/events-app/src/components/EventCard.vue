@@ -1,0 +1,49 @@
+<template>
+    <div class="event-card -shadow">
+        <span class="eye-brow">@{{ event.time}} on {{ event.date}}</span>
+        <h2>{{event.title}}</h2>
+         <span>{{ event.attendes.length }} attending.</span>
+    </div>
+</template>
+
+<script>
+    export default {
+        data() {
+            return {
+                event: {
+                    id: 1,
+                    title: "Some event",
+                    date: "Tues Aug 19, 2018",
+                    time: "6:00",
+                    attendes: [
+                        {id: "abc123", name: "Jeremie L."},
+                        {id: "def456", name: "Aurelie L."},
+                    ]
+                }
+
+            }
+        },
+    }
+</script>
+
+<style scoped>
+    .event-card {
+      padding: 20px;
+      margin-bottom: 24px;
+      transition: all 0.2s linear;
+      cursor: pointer;
+    }
+    .event-card:hover {
+      transform: scale(1.01);
+      box-shadow: 0 3px 12px 0 rgba(0, 0, 0, 0.2), 0 1px 15px 0 rgba(0, 0, 0, 0.19);
+    }
+    .event-card > .title {
+      margin: 0;
+    }
+    
+    .event-link {
+      color: black;
+      text-decoration: none;
+      font-weight: 100;
+    }
+</style>

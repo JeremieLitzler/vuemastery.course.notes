@@ -163,3 +163,5 @@ so that we can use the `username` in the HTML :
 ```html
 <router-link :to="{ name: 'user' }">User: {{username}}</router-link> |
 ```
+
+### Single File Vue components
