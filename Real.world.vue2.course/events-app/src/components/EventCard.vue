@@ -1,9 +1,11 @@
 <template>
-    <div class="event-card -shadow">
-        <span class="eye-brow">@{{ event.time}} on {{ event.date}}</span>
-        <h2>{{event.title}}</h2>
-         <span>{{ event.attendes.length }} attending.</span>
-    </div>
+    <router-link class="event-link" :to="{ name: 'event-details', params: { id: event.id } }">
+        <div class="event-card -shadow">
+            <span class="eyebrow">@{{ event.time}} on {{ event.date}}</span>
+            <h2 class="title">{{event.title}}</h2>
+            <span>{{ event.attendes.length }} attending.</span>
+        </div>
+    </router-link>
 </template>
 
 <script>

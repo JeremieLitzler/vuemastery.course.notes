@@ -165,3 +165,20 @@ so that we can use the `username` in the HTML :
 ```
 
 ### Single File Vue components
+
+- Using snippets like `vbase` allows to create a new component skeleton in a second.
+- To use the new component from a parent component, using the snippet `vimport-export` creates this for you:
+
+```js
+import Name from '@/components/Name.vue';
+
+export default {
+  components: {
+    Name,
+  },
+};
+```
+
+You just new to replace the `Name` to fit your component name.
+
+In the template, you can then use it as a HTML tag: `<Name />` or `<Name></Name>`. More on that later.
