@@ -182,3 +182,25 @@ export default {
 You just new to replace the `Name` to fit your component name.
 
 In the template, you can then use it as a HTML tag: `<Name />` or `<Name></Name>`. More on that later.
+
+### Global components
+
+#### Why and When using Global
+
+An icon and a button can be global component because you will use them across the application.
+
+It is done in `main.js` like so:
+
+```js
+import BaseIcon from '@/components/BaseIcon.vue';
+
+Vue.component('BaseIcon', BaseIcon);
+```
+
+But to do it more effeciently as the application scales?
+
+#### Automatic registration
+
+See [the documentation](https://vuejs.org/v2/guide/components-registration.html).
+
+In regards to TS7016, check [this source](https://pjausovec.medium.com/how-to-fix-error-ts7016-could-not-find-a-declaration-file-for-module-xyz-has-an-any-type-ecab588800a8) or just read the warning.
