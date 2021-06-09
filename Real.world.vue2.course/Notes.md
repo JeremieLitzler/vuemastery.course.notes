@@ -1,5 +1,7 @@
 # Notes
 
+[The course is available here](https://www.vuemastery.com/courses/real-world-vue-js).
+
 ## Vue CLI 3 - Creating our Project
 
 - Install Vue CLI: `npm i -g @vue/cli`
