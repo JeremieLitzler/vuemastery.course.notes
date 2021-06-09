@@ -3,28 +3,16 @@
         <div class="event-card -shadow">
             <span class="eyebrow">@{{ event.time}} on {{ event.date}}</span>
             <h2 class="title">{{event.title}}</h2>
-            <BaseIcon name="users">{{ event.attendes.length }} attending</BaseIcon>
+            <BaseIcon name="users">{{ event.attendes ? event.attendes.length : 0 }} attending</BaseIcon>
         </div>
     </router-link>
 </template>
 
 <script>
     export default {
-        data() {
-            return {
-                event: {
-                    id: 1,
-                    title: "Some event",
-                    date: "Tues Aug 19, 2018",
-                    time: "6:00",
-                    attendes: [
-                        {id: "abc123", name: "Jeremie L."},
-                        {id: "def456", name: "Aurelie L."},
-                    ]
-                }
-
-            }
-        },
+        props: {
+            event: Object
+        }
     }
 </script>
 

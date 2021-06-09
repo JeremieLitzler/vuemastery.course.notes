@@ -217,11 +217,19 @@ and use it like this in the parent:
 
 ### Make API Calls
 
+We will use the `created` lifecycle hook to load the data from the API using axios get promise.
+
 ### Component lifecycle
 
 _When should we call the API?_
 
+In the `created` lifecycle hook. See [the VueJS docs](https://vuejs.org/v2/api/#created).
+
+For the complete documentation,[open this link](https://vuejs.org/v2/guide/instance.html#Instance-Lifecycle-Hooks).
+
 ### Creating services
+
+When you call the same API in different place, we need to refractor and create a service so all API calls are made from the same place.
 
 ## Managing NPM packages
 
