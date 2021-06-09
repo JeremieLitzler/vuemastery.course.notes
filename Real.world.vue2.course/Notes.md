@@ -166,41 +166,43 @@ so that we can use the `username` in the HTML :
 
 ### Single File Vue components
 
-- Using snippets like `vbase` allows to create a new component skeleton in a second.
-- To use the new component from a parent component, using the snippet `vimport-export` creates this for you:
+## Slots
 
-```js
-import Name from '@/components/Name.vue';
+They are usefull for:
 
-export default {
-  components: {
-    Name,
-  },
-};
+- Display elements: icons, boxes
+- Form elements: inputs, select fields, buttons
+- Window elements: modals, pop-ups, notifications
+
+If you use multiple slots in a component, using named slots will allow Vue where to put the data from the parent to the child component.
+
+So when you have this:
+
+```html
+<template>
+  <div>
+    <slot></slot>
+    <slot></slot>
+  </div>
+</template>
 ```
 
-You just new to replace the `Name` to fit your component name.
+we can update to:
 
-In the template, you can then use it as a HTML tag: `<Name />` or `<Name></Name>`. More on that later.
-
-### Global components
-
-#### Why and When using Global
-
-An icon and a button can be global component because you will use them across the application.
-
-It is done in `main.js` like so:
-
-```js
-import BaseIcon from '@/components/BaseIcon.vue';
-
-Vue.component('BaseIcon', BaseIcon);
+```html
+<template>
+  <div>
+    <slot name="heading"></slot>
+    <slot name="paragraph"></slot>
+  </div>
+</template>
 ```
 
-But to do it more effeciently as the application scales?
+and use it like this in the parent:
 
-#### Automatic registration
-
-See [the documentation](https://vuejs.org/v2/guide/components-registration.html).
-
-In regards to TS7016, check [this source](https://pjausovec.medium.com/how-to-fix-error-ts7016-could-not-find-a-declaration-file-for-module-xyz-has-an-any-type-ecab588800a8) or just read the warning.
+```html
+<MediaBox>
+  <h2 slot="heading">Adam Jahr</h2>
+  <p slot="paragraph">My words.</p>
+</MediaBox>
+```
