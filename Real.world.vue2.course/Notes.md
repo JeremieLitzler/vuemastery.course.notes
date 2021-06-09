@@ -206,3 +206,24 @@ and use it like this in the parent:
   <p slot="paragraph">My words.</p>
 </MediaBox>
 ```
+
+## API Calls with Axios
+
+### Get started with Axios
+
+- Install `json-server` to mock data: `npm i -g json-server`
+- Launch the server: `json-server --watch db.json`
+- Install axios either via the Vue UI or the NPM CLI
+
+### Make API Calls
+
+### Component lifecycle
+
+_When should we call the API?_
+
+### Creating services
+
+## Managing NPM packages
+
+- what is outdated: `npm outdated`
+- update a package: `npm update package-name`
