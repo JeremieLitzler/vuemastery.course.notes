@@ -4,6 +4,17 @@
 
 ## Intro to Vuex
 
+- State is the single source of truth.
+- Let's compare the Vue instance to Vuex:
+
+| Vue instance | Vuex    |
+| ------------ | ------- |
+| data         | state   |
+| methods      | actions |
+| computed     | getters |
+
+The store has also `mutations` called by `actions` to update the `store` to ease the debugging.
+
 ## Mastering Vuex Orientation
 
 ## State & Getters
