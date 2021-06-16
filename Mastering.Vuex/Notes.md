@@ -17,6 +17,8 @@ The store has also `mutations` called by `actions` to update the `store` to ease
 
 ## Mastering Vuex Orientation
 
+Checkout the [Real World Vue course](../Real.world.vue2.course/Notes.md).
+
 ## State & Getters
 
 ## Mutations & Actions Part 1
