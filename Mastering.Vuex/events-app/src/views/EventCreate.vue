@@ -1,3 +1,11 @@
 <template>
-    <h1>Create an event</h1>
+  <div></div>
 </template>
+
+<script>
+export default {
+  computed: {},
+};
+</script>
+
+<style scoped></style>
