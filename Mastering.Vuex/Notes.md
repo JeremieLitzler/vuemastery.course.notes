@@ -92,6 +92,19 @@ export default {
 
 They are stored in the store.
 
+We can do the same thing with the getters using `mapGetters`.
+
+```js
+import { mapState, mapGetters } from 'vuex';
+
+export default {
+  computed: {
+    ...mapGetters(['categoryCount']),
+    ...mapState(['user', 'categories']),
+  },
+};
+```
+
 ## Mutations & Actions Part 1
 
 ## Mutations & Actions Part 2
