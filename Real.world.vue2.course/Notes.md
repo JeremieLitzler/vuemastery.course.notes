@@ -2,6 +2,8 @@
 
 [The course is available here](https://www.vuemastery.com/courses/real-world-vue-js).
 
+The project is available on [this repo](https://github.com/JeremieLitzler/vuemastery-projects).
+
 ## Vue CLI 3 - Creating our Project
 
 - Install Vue CLI: `npm i -g @vue/cli`

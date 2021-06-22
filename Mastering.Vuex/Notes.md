@@ -21,6 +21,77 @@ Checkout the [Real World Vue course](../Real.world.vue2.course/Notes.md).
 
 ## State & Getters
 
+### How to use the state from the vue
+
+Either a direct access:
+
+```js
+default {
+  computed: {
+    userName() {
+      return this.$store.state.user.name;
+    },
+    userID() {
+      return this.$store.state.user.id;
+    },
+  },
+};
+```
+
+Or `mapState`:
+
+```js
+import { mapState } from 'vuex';
+
+export default {
+  computed: mapState({
+    userName: (state) => state.user.name,
+    userID: (state) => state.user.id,
+    categories: (state) => state.categories,
+  }),
+};
+//OR without dot notation
+export default {
+  computed: mapState({
+    user: 'user',
+    categories: 'categories',
+  }),
+};
+```
+
+Or even, without naming the computed properties:
+
+```js
+import { mapState } from 'vuex';
+
+export default {
+  computed: mapState(['user', 'categories']),
+};
+```
+
+All three solutions give the same output.
+
+### How to use local compare properties with `mapState`
+
+Use the spread operator:
+
+```js
+import { mapState } from 'vuex';
+
+export default {
+  computed: {
+    localComputed() {
+      return 'My local computed!';
+    },
+    ...mapState(['user', 'categories']),
+  },
+};
+```
+
+### What about getters
+
+They are stored in the store.
+
 ## Mutations & Actions Part 1
 
 ## Mutations & Actions Part 2
@@ -28,3 +99,7 @@ Checkout the [Real World Vue course](../Real.world.vue2.course/Notes.md).
 ## Modules
 
 ## Success & Error notifications
+
+```
+
+```
