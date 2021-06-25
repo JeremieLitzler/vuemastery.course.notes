@@ -107,12 +107,20 @@ export default {
 
 ## Mutations & Actions Part 1
 
+- Mutations update the data
+  - Mutations are named in capitals as a convention. It is not mandatory but highly recommanded.
+- Actions retrieve the data from an API and pass it on to mutations using `commit('MUTATION_NAME', someValue)`.
+- The component triggers an action using `this.$store.dispatch('actionName', this.payload)`.
+
 ## Mutations & Actions Part 2
+
+To reload a component when the url changes, including query strings, use this:
+
+```html
+<!-- Reload the component when the url change -->
+<router-view :key="$route.fullPath" />
+```
 
 ## Modules
 
 ## Success & Error notifications
-
-```
-
-```
