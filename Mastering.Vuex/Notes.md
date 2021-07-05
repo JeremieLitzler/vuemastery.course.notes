@@ -62,10 +62,10 @@ export default {
 Or even, without naming the computed properties:
 
 ```js
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 
 export default {
-  computed: mapState(['user', 'categories']),
+  computed: mapState(["user", "categories"]),
 };
 ```
 
@@ -76,14 +76,14 @@ All three solutions give the same output.
 Use the spread operator:
 
 ```js
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 
 export default {
   computed: {
     localComputed() {
-      return 'My local computed!';
+      return "My local computed!";
     },
-    ...mapState(['user', 'categories']),
+    ...mapState(["user", "categories"]),
   },
 };
 ```
@@ -95,12 +95,12 @@ They are stored in the store.
 We can do the same thing with the getters using `mapGetters`.
 
 ```js
-import { mapState, mapGetters } from 'vuex';
+import { mapState, mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters(['categoryCount']),
-    ...mapState(['user', 'categories']),
+    ...mapGetters(["categoryCount"]),
+    ...mapState(["user", "categories"]),
   },
 };
 ```
@@ -122,5 +122,121 @@ To reload a component when the url changes, including query strings, use this:
 ```
 
 ## Modules
+
+- They allow to organize the state.
+- We can use modules for:
+
+  - data models (ex: user vs event)
+  - feature (ex: cart vs product inventory)
+
+### 2 ways to organize state and modules
+
+#### Method 1
+
+The module:
+
+```js
+export const state = {...}
+export const actions = {...}
+export const mutations = {...}
+export const getters = {...}
+```
+
+then import it with:
+
+```js
+import * as storeModule from "/path/to/store/module";
+```
+
+#### Method 2
+
+The module:
+
+```js
+export const default {
+  state: {...},
+  actions: {...},
+  mutations: {...},
+  getters: {...}
+};
+```
+
+then import it with;
+
+```js
+import storeModule from "/path/to/store/module";
+```
+
+### How to access state of modules between each other
+
+For example, in an action :
+
+```js
+const actions = {
+  saveEvent({ commit, rootState }, event) {
+    console.log(`User ${rootState.user.user.name} is creating an event`);
+    return EventService.postEvent(event).then(() => {
+      //only commit if the backend has saved the data
+      commit("ADD_EVENT", event);
+    });
+  },
+};
+```
+
+### How to call module actions from another
+
+For example, in an action :
+
+```js
+const actions = {
+  saveEvent({ commit, dispatch, rootState }, event) {
+    console.log(`User ${rootState.user.user.name} is creating an event`);
+    dispatch("userActionToCall"); //CALLED WITHOUT THE MODULE NAME
+    return EventService.postEvent(event).then(() => {
+      //only commit if the backend has saved the data
+      commit("ADD_EVENT", event);
+    });
+  },
+};
+```
+
+### Namespacing modules
+
+It can be done simply with `namespaced = true`.
+
+So with an example with actions:
+
+```js
+
+export default {
+  methods: mapActions(["event/fetchEvent"]), //namespaced array of actions
+}
+export default {
+  methods: mapActions("event", ["fetchEvent"]), //namespace + array of actions
+}
+```
+
+It works the same for getters.
+
+So taking the example above, in an action, do we need to change any code?
+
+```js
+const actions = {
+  saveEvent({ commit, dispatch, rootState }, event) {
+    //=> NO
+    console.log(`User ${rootState.user.user.name} is creating an event`);
+    //NO if the Action is inside the current module, OTHERWISE, use
+    dispatch("userActionToCall");
+    //null => payload but could be any object.
+    //dispatch("user/ActionToCall", null, {rout: true});
+    return EventService.postEvent(event).then(() => {
+      //only commit if the backend has saved the data
+      commit("ADD_EVENT", event); //NO if the Mutation is inside the current module.
+    });
+  },
+};
+```
+
+**BEST PRACTICE**: do not call mutations from other modules, **use their action**.
 
 ## Success & Error notifications
