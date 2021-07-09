@@ -240,3 +240,5 @@ const actions = {
 **BEST PRACTICE**: do not call mutations from other modules, **use their action**.
 
 ## Success & Error notifications
+
+It is just putting into application the vuex module principle.
