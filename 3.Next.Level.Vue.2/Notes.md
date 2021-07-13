@@ -28,6 +28,30 @@ For that we will use a Vuex module.
 
 ## In-component Route guards
 
+Vue provides lifecycle hook methods:
+
+- `beforeCreate()`
+- `created()`
+- `beforeMount()`
+- `mounted()`
+- `beforeUpdate()`
+- `updated()`
+- `beforeDetroy()`
+- `detroyed()`
+
+With Vue router, we add 3 more methods, called _Route Navigation Guards_:
+
+- `beforeRouteEnter(routeTo, routeFrom, next)`
+  - called before `created`, so no access to `this` in the component.
+- `beforeRouteUpdate(routeTo, routeFrom, next)`
+- `beforeRouteLeave(routeTo, routeFrom, next)`
+
+- `routeTo` is the route we are going to.
+- `routeFrom` is the route we are coming from.
+- `next` is a function that must be called to the resolve the hook.
+
+See [docs](https://router.vuejs.org/guide/advanced/navigation-guards.html#in-component-guards).
+
 ## Global and Per-Route guards
 
 ## Completing our Progress bar
