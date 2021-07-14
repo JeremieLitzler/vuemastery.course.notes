@@ -54,6 +54,28 @@ See [docs](https://router.vuejs.org/guide/advanced/navigation-guards.html#in-com
 
 ## Global and Per-Route guards
 
+It can help us remove the use of the state in the components.
+
+We can use two guards:
+
+```js
+//run before navigating to the component
+router.beforeEach((to, from, next) => {
+  next();
+});
+
+//run right before the component is created (but after beforeRouteEnter?)
+router.afterEach((to, from) => {
+  console.log(to, from);
+});
+```
+
+We set them the router file.
+
+The per-route guard is `beforeEnter` set on the route object.
+
+- it runs after `beforeEach` and before `beforeRouteEnter`
+
 ## Completing our Progress bar
 
 ## Error Handling
