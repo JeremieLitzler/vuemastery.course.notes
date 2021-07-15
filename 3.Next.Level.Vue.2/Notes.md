@@ -78,6 +78,12 @@ The per-route guard is `beforeEnter` set on the route object.
 
 ## Completing our Progress bar
 
+`beforeEnter` is **only called** when the component is reused!
+
+But soon `beforeResolve` will come to solve that.
+
+For now, we will use the in-component guards `beforeRouteEnter` (when the component is created) and `beforeRouteUpdate` (when the component is reloaded).
+
 ## Error Handling
 
 ## Reusable Form components: BaseInput
