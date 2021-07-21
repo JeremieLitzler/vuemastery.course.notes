@@ -86,6 +86,67 @@ For now, we will use the in-component guards `beforeRouteEnter` (when the compon
 
 ## Error Handling
 
+This deals with http§/xxx page, for ex 404, and other errors.
+
+```js
+routes = {
+  {
+    path: "/network-issue",
+    name: "network-issue",
+    component: NetworkIssue,
+    props: true,
+  },
+  {
+    path: "/page-not-found",
+    name: "page-not-found",
+    component: PageNotFound,
+    props: true,//to pass on some data to tell the source of the problem.
+  },
+  {
+    path: "*",
+    redirect: {
+      name: "page-not-found",
+      params: { resource: "page", value: "" },
+    },
+  },
+}
+```
+
+The usage would be on a route:
+
+```js
+beforeEnter(to, from, next) {
+      store
+        .dispatch("event/fetchEvent", to.params.id)
+        .then((event) => {
+          console.log("item fetched...");
+          to.params.event = event;
+          next();
+        })
+        .catch((err) => {
+          ErrorHandler.Handle404VsConnectivity(next, err, to);
+        });
+    }
+```
+
+where `Handle404VsConnectivity` is :
+
+```js
+function Handle404VsConnectivity(next, err, routeTo) {
+  console.error(err);
+  if (err.response && err.response.status === 404) {
+    next({
+      name: "page-not-found",
+      params: { resource: "event", value: routeTo.params.id },
+    });
+  } else {
+    next({
+      name: "network-issue",
+    });
+  }
+}
+```
+
 ## Reusable Form components: BaseInput
 
 ## Reusable Form components: BaseButton
