@@ -1,5 +1,7 @@
 # Next-Level Vue 2
 
+See [starting code](https://vuemastery-nextlevelvue-by-jeremiel.netlify.app/).
+
 ## Progress bar: axios interceptors
 
 The goal is to implement a mean to let the user know that data is loading.
@@ -27,6 +29,8 @@ For that we will use a Vuex module.
 - On response, catch your api errors.
 
 ## In-component Route guards
+
+See [demo](https://vuemastery-nextlevelvue-incomponentguards-by-jeremiel.netlify.app/).
 
 Vue provides lifecycle hook methods:
 
@@ -85,6 +89,8 @@ But soon `beforeResolve` will come to solve that.
 For now, we will use the in-component guards `beforeRouteEnter` (when the component is created) and `beforeRouteUpdate` (when the component is reloaded).
 
 ## Error Handling
+
+See [demo](https://vuemastery-nextlevelvue-globalandperrouteguard-by-jeremiel.netlify.app/).
 
 This deals with http§/xxx page, for ex 404, and other errors.
 
@@ -148,6 +154,57 @@ function Handle404VsConnectivity(next, err, routeTo) {
 ```
 
 ## Reusable Form components: BaseInput
+
+See [demo](https://vuemastery-nextlevelvue-reusableformcomponents-by-jeremiel.netlify.app/).
+
+It assumes that we use the automatic component registration in `main.js`. See [the docs](https://v3.vuejs.org/cookbook/automatic-global-registration-of-base-components.html#base-example).
+
+So we need to send from the base input component the data typed by the user using `this.$emit`.
+
+The parent will listen to it like so:
+
+```html
+<BaseInput
+  label="Title"
+  type="text"
+  placeholder="Add an event title"
+  v-model="event.title"
+/>
+```
+
+where `v-model="event.title"` is a shorthand for:
+
+```html
+<BaseInput label="Title" type="text" placeholder="Add an event title"
+:value="event.title @input="(value) => {event.title = value}" />
+```
+
+Also, if you want to pass on native attributes to a HTML element, like `type` and `placeholder` on `input`, then we just pass it in the component element and use `v-bind="$attrs"`.
+
+```html
+<base-input
+  class="field"
+  label="Location"
+  type="text"
+  placeholder="Add a location"
+  v-model="event.location"
+/>
+
+<div>
+  <label v-if="label" for="">{{ label }}</label>
+  <select @input="updateValue" v-bind="$attrs">
+    <option v-for="option in options" :key="option">{{ option }}</option>
+  </select>
+</div>
+```
+
+Note: `v-bind="$attrs"` will work on a child element only if the component has `inheritAttrs: false`
+
+## Reusable Form components: BaseSelect
+
+It is very similar to the `BaseInput`.
+
+For multi-selection, see the [vue-multiselect library](https://vue-multiselect.js.org/).
 
 ## Reusable Form components: BaseButton
 
