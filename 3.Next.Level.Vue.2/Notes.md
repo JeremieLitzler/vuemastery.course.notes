@@ -200,6 +200,8 @@ Also, if you want to pass on native attributes to a HTML element, like `type` an
 
 Note: `v-bind="$attrs"` will work on a child element only if the component has `inheritAttrs: false`
 
+However, **this doesn't work for `style` and `class` attributes** in Vue2! Instead, you must use `props`.
+
 ## Reusable Form components: BaseSelect
 
 It is very similar to the `BaseInput`.
@@ -207,6 +209,12 @@ It is very similar to the `BaseInput`.
 For multi-selection, see the [vue-multiselect library](https://vue-multiselect.js.org/).
 
 ## Reusable Form components: BaseButton
+
+The directive `v-on="$listeners"` helps us use the button more broadly, e.g. not only in a form.
+
+```html
+<button v-on="$listeners"><!-- inheriting event listeners --></button>
+```
 
 ## Form Validation with Vuevalidate
 
