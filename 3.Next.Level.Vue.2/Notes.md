@@ -218,6 +218,10 @@ The directive `v-on="$listeners"` helps us use the button more broadly, e.g. not
 
 ## Form Validation with Vuevalidate
 
+See the library [through this link](https://vuelidate.js.org/).
+
+See the example from the course [through this link](https://github.com/JeremieLitzler/vuemastery-projects/blob/ResuableFormComponents/src/views/ExampleVuelidate.vue).
+
 ## Mixins
 
 ## Filters
